@@ -1,14 +1,8 @@
-const ITEMS = [
-  "Child rights",
-  "Education for all",
-  "End child labour",
-  "Stop child marriage",
-  "Women's dignity",
-  "Community first",
-];
+import { STR, useLang } from "@/lib/i18n";
 
 export const Marquee = () => {
-  const row = [...ITEMS, ...ITEMS];
+  const { lang } = useLang();
+  const row = [...STR[lang].marquee, ...STR[lang].marquee];
   return (
     <div
       data-testid="editorial-marquee"

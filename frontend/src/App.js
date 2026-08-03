@@ -5,6 +5,7 @@ import Lenis from "lenis";
 import Home from "@/pages/Home";
 import Supporters from "@/pages/Supporters";
 import { Toaster } from "@/components/ui/sonner";
+import { LangProvider } from "@/lib/i18n";
 
 function useLenis() {
   useEffect(() => {
@@ -35,14 +36,14 @@ function ScrollToTop() {
 function AppShell() {
   useLenis();
   return (
-    <>
+    <LangProvider>
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/supporters" element={<Supporters />} />
       </Routes>
       <Toaster position="top-center" richColors />
-    </>
+    </LangProvider>
   );
 }
 

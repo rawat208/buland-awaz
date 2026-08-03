@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { api } from "@/lib/api";
+import { STR, useLang } from "@/lib/i18n";
 
 const AVATAR_STYLES = [
   "bg-brand-red text-paper",
@@ -20,6 +21,8 @@ const formatDate = (iso) => {
 
 export default function Supporters() {
   const navigate = useNavigate();
+  const { lang, toggle } = useLang();
+  const s = STR[lang].supporters;
   const [members, setMembers] = useState(null);
 
   useEffect(() => {
@@ -40,13 +43,23 @@ export default function Supporters() {
             Demo
           </span>
         </Link>
-        <Link
-          to="/"
-          data-testid="supporters-back-link"
-          className="inline-flex items-center gap-2 border-2 border-ink px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] transition-colors duration-300 hover:bg-ink hover:text-paper"
-        >
-          <ArrowLeft className="h-4 w-4" /> Back to site
-        </Link>
+        <div className="flex items-center gap-2">
+          <button
+            data-testid="lang-toggle"
+            onClick={toggle}
+            aria-label="Switch language"
+            className="border-2 border-ink px-3 py-2 text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-300 hover:bg-brand-yellow"
+          >
+            {lang === "en" ? "हिंदी" : "EN"}
+          </button>
+          <Link
+            to="/"
+            data-testid="supporters-back-link"
+            className="inline-flex items-center gap-2 border-2 border-ink px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] transition-colors duration-300 hover:bg-ink hover:text-paper"
+          >
+            <ArrowLeft className="h-4 w-4" /> {s.back}
+          </Link>
+        </div>
       </header>
 
       <main className="px-6 py-20 md:px-12 md:py-28">
@@ -55,7 +68,7 @@ export default function Supporters() {
           animate={{ opacity: 1 }}
           className="text-xs font-bold uppercase tracking-[0.3em] text-brand-red"
         >
-          Supporters · Hamare log
+          {s.label}
         </motion.p>
         <motion.h1
           initial={{ opacity: 0, y: 40 }}
@@ -63,9 +76,9 @@ export default function Supporters() {
           transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           className="mt-6 font-display text-5xl font-semibold uppercase leading-[0.9] tracking-tighter md:text-8xl"
         >
-          The Awaaz
+          {s.h1a}
           <br />
-          Wall<span className="text-brand-red">.</span>
+          {s.h1b}<span className="text-brand-red">.</span>
         </motion.h1>
         <motion.p
           initial={{ opacity: 0 }}
@@ -73,9 +86,7 @@ export default function Supporters() {
           transition={{ delay: 0.2 }}
           className="mt-6 max-w-xl text-base leading-relaxed opacity-80 md:text-lg"
         >
-          {members === null
-            ? "Loading…"
-            : `${members.length} log awaaz ban chuke hain — aur har roz koi na koi judta ja raha hai.`}
+          {members === null ? s.loading : s.sub.replace("{n}", members.length)}
         </motion.p>
 
         <div data-testid="supporters-list" className="mt-14 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -109,7 +120,7 @@ export default function Supporters() {
                 </span>
                 {m.created_at && (
                   <span className="text-[10px] uppercase tracking-[0.2em] opacity-50">
-                    Joined {formatDate(m.created_at)}
+                    {s.joined} {formatDate(m.created_at)}
                   </span>
                 )}
               </div>
@@ -117,7 +128,7 @@ export default function Supporters() {
           ))}
           {members !== null && members.length === 0 && (
             <p data-testid="supporters-empty" className="col-span-full border-2 border-ink p-10 text-center text-sm uppercase tracking-[0.2em] opacity-60">
-              Abhi koi member nahi — pehle baniye!
+              {s.empty}
             </p>
           )}
         </div>
@@ -130,14 +141,14 @@ export default function Supporters() {
           className="mt-16 flex flex-col items-start gap-6 border-2 border-ink bg-brand-yellow p-8 md:flex-row md:items-center md:justify-between md:p-12"
         >
           <p className="max-w-xl font-display text-2xl font-semibold uppercase leading-tight tracking-tight md:text-4xl">
-            Aapka naam bhi yahan hona chahiye<span className="text-brand-red">.</span>
+            {s.ctaTitle}<span className="text-brand-red">.</span>
           </p>
           <button
             data-testid="supporters-join-cta"
             onClick={() => navigate("/", { state: { scrollTo: "join" } })}
             className="group inline-flex items-center gap-2 border-2 border-ink bg-ink px-7 py-4 text-sm font-bold uppercase tracking-[0.2em] text-paper transition-colors duration-300 hover:bg-brand-red hover:border-brand-red"
           >
-            Member baniye
+            {s.ctaBtn}
             <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
           </button>
         </motion.div>

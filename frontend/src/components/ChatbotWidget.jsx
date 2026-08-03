@@ -1,19 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MessageSquare, SendHorizonal, X } from "lucide-react";
+import { STR, useLang } from "@/lib/i18n";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
-const SUGGESTIONS = ["What does Buland Awaaz do?", "How can I volunteer?", "Where do you work?"];
-
 export const ChatbotWidget = () => {
+  const { lang } = useLang();
+  const s = STR[lang].chat;
   const [open, setOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    {
-      role: "assistant",
-      content: "Namaste! I'm Buland Mitra, the AI voice of Buland Awaaz. Ask me about our work, campaigns or volunteering.",
-    },
-  ]);
+  const [messages, setMessages] = useState(() => [{ role: "assistant", content: s.greeting }]);
   const [input, setInput] = useState("");
   const [streaming, setStreaming] = useState(false);
   const sessionRef = useRef(null);
@@ -78,10 +74,7 @@ export const ChatbotWidget = () => {
     } catch {
       setMessages((prev) => {
         const next = [...prev];
-        next[next.length - 1] = {
-          role: "assistant",
-          content: "I'm having trouble connecting right now. Please try again in a moment, or use the contact form below.",
-        };
+        next[next.length - 1] = { role: "assistant", content: s.error };
         return next;
       });
     } finally {
@@ -116,8 +109,8 @@ export const ChatbotWidget = () => {
           >
             <div className="flex items-center justify-between border-b-2 border-paper/20 px-5 py-4">
               <div>
-                <p className="font-display text-sm font-semibold uppercase tracking-[0.2em]">Ask Buland</p>
-                <p className="text-[10px] uppercase tracking-[0.25em] text-paper/50">AI assistant · answers about the NGO</p>
+                <p className="font-display text-sm font-semibold uppercase tracking-[0.2em]">{s.title}</p>
+                <p className="text-[10px] uppercase tracking-[0.25em] text-paper/50">{s.headerSub}</p>
               </div>
               <span className="h-2.5 w-2.5 animate-pulse bg-brand-yellow" aria-hidden="true" />
             </div>
@@ -141,14 +134,14 @@ export const ChatbotWidget = () => {
               ))}
               {messages.length === 1 && (
                 <div className="flex flex-wrap gap-2 pt-2">
-                  {SUGGESTIONS.map((s) => (
+                  {s.suggestions.map((sug, i) => (
                     <button
-                      key={s}
-                      data-testid={`chatbot-suggestion-${s.slice(0, 12).replace(/\W+/g, "-").toLowerCase()}`}
-                      onClick={() => send(s)}
+                      key={i}
+                      data-testid={`chatbot-suggestion-${i}`}
+                      onClick={() => send(sug)}
                       className="border border-paper/30 px-3 py-1.5 text-xs uppercase tracking-[0.15em] text-paper/70 transition-colors duration-200 hover:border-brand-yellow hover:text-brand-yellow"
                     >
-                      {s}
+                      {sug}
                     </button>
                   ))}
                 </div>
@@ -166,7 +159,7 @@ export const ChatbotWidget = () => {
                 data-testid="chatbot-input"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="Ask about our work…"
+                placeholder={s.placeholder}
                 aria-label="Chat message"
                 className="flex-1 border-2 border-paper/25 bg-transparent px-3 py-2.5 text-sm outline-none placeholder:text-paper/40 focus:border-brand-yellow"
               />

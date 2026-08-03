@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import { scrollToSection } from "@/lib/api";
+import { STR, useLang } from "@/lib/i18n";
 
 const HERO_IMG =
   "https://images.unsplash.com/photo-1618245472177-2a74ad3b994a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzV8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBnaXJsJTIwcG9ydHJhaXQlMjBkb2N1bWVudGFyeXxlbnwwfHx8fDE3ODU3Mzc4NDF8MA&ixlib=rb-4.1.0&q=85";
@@ -21,6 +22,8 @@ export const MaskedLine = ({ children, delay = 0, className = "" }) => (
 
 export const Hero = () => {
   const ref = useRef(null);
+  const { lang } = useLang();
+  const s = STR[lang].hero;
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], ["0%", "16%"]);
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
@@ -35,7 +38,7 @@ export const Hero = () => {
         <div className="lg:col-span-7">
           <MaskedLine delay={0.1}>
             <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-red md:text-sm">
-              Gurugram · Haryana · A people's movement
+              {s.tag}
             </p>
           </MaskedLine>
 
@@ -50,9 +53,7 @@ export const Hero = () => {
 
           <MaskedLine delay={0.6}>
             <p className="mt-8 max-w-xl text-base leading-relaxed md:text-lg">
-              The strong voice for those who go unheard — fighting child labour,
-              child marriage and silence around women's dignity, street by street,
-              home by home.
+              {s.para}
             </p>
           </MaskedLine>
 
@@ -63,7 +64,7 @@ export const Hero = () => {
                 onClick={() => scrollToSection("volunteer")}
                 className="group inline-flex items-center gap-2 border-2 border-ink bg-ink px-7 py-4 text-sm font-bold uppercase tracking-[0.2em] text-paper transition-colors duration-300 hover:bg-brand-red hover:border-brand-red"
               >
-                Raise your hand
+                {s.cta1}
                 <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </button>
               <button
@@ -71,7 +72,7 @@ export const Hero = () => {
                 onClick={() => scrollToSection("programs")}
                 className="inline-flex items-center gap-2 border-2 border-ink bg-transparent px-7 py-4 text-sm font-bold uppercase tracking-[0.2em] text-ink transition-colors duration-300 hover:bg-ink hover:text-paper"
               >
-                Our work
+                {s.cta2}
               </button>
             </div>
           </MaskedLine>
@@ -94,7 +95,7 @@ export const Hero = () => {
               />
             </div>
             <div className="absolute left-0 top-0 -translate-x-2 -translate-y-2 border-2 border-ink bg-brand-yellow px-3 py-2 text-[10px] font-bold uppercase tracking-[0.25em] text-ink md:text-xs">
-              Every voice counts
+              {s.badge}
             </div>
           </motion.div>
         </div>
@@ -107,7 +108,7 @@ export const Hero = () => {
         className="absolute bottom-6 left-6 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.3em] md:left-12 md:text-xs"
       >
         <ArrowDown className="h-4 w-4 animate-bounce" />
-        Scroll — the manifesto awaits
+        {s.cue}
       </motion.div>
     </section>
   );

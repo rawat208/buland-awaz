@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { api } from "@/lib/api";
+import { STR, useLang } from "@/lib/i18n";
 
 const formatDate = (iso) => {
   if (!iso) return "";
@@ -10,6 +11,8 @@ const formatDate = (iso) => {
 };
 
 export const News = () => {
+  const { lang } = useLang();
+  const s = STR[lang].news;
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -29,7 +32,7 @@ export const News = () => {
         viewport={{ once: true }}
         className="text-xs font-bold uppercase tracking-[0.3em] text-brand-red"
       >
-        From the field
+        {s.label}
       </motion.p>
       <motion.h2
         initial={{ opacity: 0, y: 40 }}
@@ -38,14 +41,14 @@ export const News = () => {
         transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
         className="mt-6 font-display text-4xl font-semibold uppercase leading-[0.95] tracking-tighter md:text-7xl"
       >
-        News & events
+        {s.h2}
       </motion.h2>
 
       <div data-testid="news-list" className="mt-14">
-        {loading && <p className="py-10 text-sm uppercase tracking-[0.2em] opacity-60">Loading updates…</p>}
+        {loading && <p className="py-10 text-sm uppercase tracking-[0.2em] opacity-60">{s.loading}</p>}
         {!loading && items.length === 0 && (
           <p data-testid="news-empty" className="border-t-2 border-ink py-10 text-sm uppercase tracking-[0.2em] opacity-60">
-            No updates yet — check back soon.
+            {s.empty}
           </p>
         )}
         {items.map((item, i) => (
@@ -64,7 +67,7 @@ export const News = () => {
                   item.type === "event" ? "bg-brand-yellow text-ink" : "bg-brand-red text-paper"
                 }`}
               >
-                {item.type}
+                {s.types[item.type] || item.type}
               </span>
               <p className="mt-3 text-xs font-bold uppercase tracking-[0.2em] opacity-60">{formatDate(item.date)}</p>
             </div>

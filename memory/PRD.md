@@ -53,6 +53,12 @@ NOTE: Site copy uses only these publicly documented work areas. Exact address, p
 - DEMO clarification from user: this is a demo/showcase site only, real site comes later — all content stays sample
 - Yellow "DEMO" badge added next to brand in navbar (home) and /supporters header; footer note "Demo site — sab content sample hai"
 
+## Implemented (2026-08-03, round 5)
+- Hindi Toggle: full EN/हिंदी switch (LangProvider + STR dictionary in /frontend/src/lib/i18n.jsx, persisted in localStorage "ba-lang"). Covers nav, hero, marquee, impact, manifesto, programs, news labels, join/volunteer/contact forms, footer, chatbot UI strings, /supporters. Mukta font loaded for Devanagari (html.hi). Form select VALUES stay English for data consistency; DB news content stays English
+- Impact Numbers: ImpactStats section right below hero — 4 count-up counters (1,200+ children, 85+ campaigns, 300+ volunteers, 40+ communities; marked sample)
+- Verified: counters animate, toggle switches whole site to Hindi and back, /supporters has its own toggle
+- GitHub push remains user-side (Emergent "Save to GitHub" → public repo)
+
 ## Verification status
 - PASS: public content API, login/me/logout, forms POST, admin submissions, content create (UI e2e), volunteer form e2e, screenshots of all sections
 - BLOCKED (external): Claude chat returns 429 `CONCURRENCY_REQUEST_LIMIT` from the Emergent key proxy ("Unlock parallel requests by upgrading to Standard or Pro plan"). Code verified correct per playbook; will work once plan/balance allows. User: Profile → Manage plan → Universal Key → Add Balance / upgrade.

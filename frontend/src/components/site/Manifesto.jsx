@@ -1,31 +1,9 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import { STR, useLang } from "@/lib/i18n";
 
 const BAND_IMG =
   "https://images.unsplash.com/photo-1738854710710-4d3714df5186?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwzfHxwcm90ZXN0JTIwYWN0aXZpc20lMjBpbmRpYXxlbnwwfHx8fDE3ODU3Mzc4MzF8MA&ixlib=rb-4.1.0&q=85";
-
-const CHAPTERS = [
-  {
-    num: "01",
-    title: "Every child in school",
-    text: "We go door to door, find the children the system forgot, counsel their families and walk them into a classroom. Enrollment is not a favour — it is a right.",
-  },
-  {
-    num: "02",
-    title: "No child at work",
-    text: "Small hands are meant for books, not bricks. We identify child labour in our communities, intervene with families and employers, and stay until the child is safe.",
-  },
-  {
-    num: "03",
-    title: "No child bride",
-    text: "A girl is not a burden to be married off. We campaign against child marriage, dowry and the quiet customs that steal childhoods — loudly, publicly, relentlessly.",
-  },
-  {
-    num: "04",
-    title: "Every woman heard",
-    text: "From village squares to city streets, we stand with women facing violence and discrimination — because dignity is not negotiable and silence is not an option.",
-  },
-];
 
 const Chapter = ({ chapter, index }) => (
   <motion.div
@@ -50,7 +28,7 @@ const Chapter = ({ chapter, index }) => (
   </motion.div>
 );
 
-const ImageBand = () => {
+const ImageBand = ({ caption }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
@@ -64,38 +42,43 @@ const ImageBand = () => {
       />
       <div className="absolute inset-0 bg-brand-red/25 mix-blend-multiply" />
       <p className="absolute bottom-6 left-6 max-w-xs border-2 border-ink bg-brand-yellow px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] text-ink md:left-12">
-        The voice that refuses to be silenced
+        {caption}
       </p>
     </div>
   );
 };
 
-export const Manifesto = () => (
-  <section id="manifesto" data-testid="manifesto-section" className="bg-ink text-paper">
-    <div className="px-6 pt-24 md:px-12 md:pt-32">
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="text-xs font-bold uppercase tracking-[0.3em] text-brand-yellow"
-      >
-        The manifesto — what we fight for
-      </motion.p>
-      <motion.h2
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-6 max-w-4xl font-display text-4xl font-semibold uppercase leading-[0.95] tracking-tighter md:text-7xl"
-      >
-        We are not asking<span className="text-brand-red">.</span> We are insisting<span className="text-brand-red">.</span>
-      </motion.h2>
-    </div>
-    <div className="mt-8 px-6 pb-20 md:px-12 md:pb-28">
-      {CHAPTERS.map((chapter, i) => (
-        <Chapter key={chapter.num} chapter={chapter} index={i} />
-      ))}
-    </div>
-    <ImageBand />
-  </section>
-);
+export const Manifesto = () => {
+  const { lang } = useLang();
+  const s = STR[lang].manifesto;
+
+  return (
+    <section id="manifesto" data-testid="manifesto-section" className="bg-ink text-paper">
+      <div className="px-6 pt-24 md:px-12 md:pt-32">
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="text-xs font-bold uppercase tracking-[0.3em] text-brand-yellow"
+        >
+          {s.label}
+        </motion.p>
+        <motion.h2
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-6 max-w-4xl font-display text-4xl font-semibold uppercase leading-[0.95] tracking-tighter md:text-7xl"
+        >
+          {s.h2a}<span className="text-brand-red">.</span> {s.h2b}<span className="text-brand-red">.</span>
+        </motion.h2>
+      </div>
+      <div className="mt-8 px-6 pb-20 md:px-12 md:pb-28">
+        {s.chapters.map((chapter, i) => (
+          <Chapter key={chapter.num} chapter={chapter} index={i} />
+        ))}
+      </div>
+      <ImageBand caption={s.caption} />
+    </section>
+  );
+};
