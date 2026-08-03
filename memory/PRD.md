@@ -62,6 +62,9 @@ NOTE: Site copy uses only these publicly documented work areas. Exact address, p
 ## Implemented (2026-08-03, round 6)
 - Language switch made prominent: segmented "EN | हिंदी" pill in navbar (home) and /supporters header, active side highlighted; separate buttons lang-en / lang-hi (replaces single toggle button)
 
+## Implemented (2026-08-03, round 7)
+- New professional logo designed (user chose design over upload): hand-crafted SVG — red square badge, paper megaphone with sound-wave arcs ("loud voice" symbolism), crisp at every size. Replaced /frontend/public/logo.svg → instantly live in navbar, footer, /supporters header, and favicon (all reference the same file)
+
 ## Verification status
 - PASS: public content API, login/me/logout, forms POST, admin submissions, content create (UI e2e), volunteer form e2e, screenshots of all sections
 - BLOCKED (external): Claude chat returns 429 `CONCURRENCY_REQUEST_LIMIT` from the Emergent key proxy ("Unlock parallel requests by upgrading to Standard or Pro plan"). Code verified correct per playbook; will work once plan/balance allows. User: Profile → Manage plan → Universal Key → Add Balance / upgrade.
