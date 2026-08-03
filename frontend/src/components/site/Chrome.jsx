@@ -45,22 +45,22 @@ export const Navbar = () => {
       data-testid="site-navbar"
       className="fixed inset-x-0 top-0 z-50 border-b-2 border-ink bg-paper/90 backdrop-blur-md"
     >
-      <div className="flex items-center justify-between px-6 py-4 md:px-12">
+      <div className="flex items-center justify-between px-4 py-4 md:px-12">
         <button
           data-testid="nav-brand"
           onClick={() => {
             setMenuOpen(false);
             window.scrollTo({ top: 0, behavior: "smooth" });
           }}
-          className="flex items-center gap-2 font-display text-lg font-semibold uppercase tracking-tight"
+          className="flex items-center gap-2 font-display text-base font-semibold uppercase tracking-tight min-[480px]:text-lg"
         >
           <img src="/logo.svg" alt="Buland Awaaz logo" className="h-8 w-8 border-2 border-ink" />
           Buland <span className="text-brand-red">Awaaz</span>
-          <span data-testid="demo-badge" className="border-2 border-ink bg-brand-yellow px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink">
+          <span data-testid="demo-badge" className="hidden border-2 border-ink bg-brand-yellow px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink min-[480px]:inline-flex">
             Demo
           </span>
         </button>
-        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
+        <nav className="hidden items-center gap-6 lg:flex xl:gap-8" aria-label="Primary">
           {NAV_IDS.map((id) => (
             <button
               key={id}
@@ -87,7 +87,7 @@ export const Navbar = () => {
             {s.volunteer}
           </button>
         </nav>
-        <div className="flex items-center gap-2 md:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <LangToggle />
           <button
             data-testid="mobile-menu-button"
@@ -111,7 +111,7 @@ export const Navbar = () => {
             transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
             data-testid="mobile-menu"
             aria-label="Mobile"
-            className="overflow-hidden border-t-2 border-ink bg-paper md:hidden"
+            className="overflow-hidden border-t-2 border-ink bg-paper lg:hidden"
           >
             <div className="flex flex-col px-6 py-2">
               {NAV_IDS.map((id) => (
@@ -152,9 +152,9 @@ export const Footer = () => {
   const s = STR[lang];
   return (
     <footer data-testid="site-footer" className="bg-ink px-6 py-16 text-paper md:px-12 md:py-24">
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
         <img src="/logo.svg" alt="Buland Awaaz logo" className="h-14 w-14 border-2 border-paper/40 md:h-20 md:w-20" />
-        <p className="font-display text-[13vw] font-semibold uppercase leading-[0.85] tracking-tighter text-outline-paper md:text-[8vw]">
+        <p className="font-display text-[11vw] font-semibold uppercase leading-[0.85] tracking-tighter text-outline-paper sm:text-[13vw] md:text-[8vw]">
           Buland Awaaz
         </p>
       </div>

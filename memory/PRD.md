@@ -75,6 +75,12 @@ NOTE: Site copy uses only these publicly documented work areas. Exact address, p
 ## Implemented (2026-08-03, round 10)
 - Chatbot defaults to Hinglish: greeting, suggestions, placeholder now Roman-Hindi even in EN site mode; Claude system prompt instructs simple Hinglish by default, mirroring visitor's script (English→English, Devanagari→Devanagari). Verified live: Hinglish question got natural Hinglish streamed reply
 
+## Implemented (2026-08-03, round 11)
+- Full responsive audit & fixes: zero horizontal overflow verified at 360/390/768/1280/1920px on home + /supporters
+  - Navbar mobile crowding fixed (demo badge hidden <480px, smaller brand); hamburger menu now serves below 1024px (was 768px) so tablet no longer collides with desktop nav
+  - GetInvolved entrance animation x:±32 → y:32 (transformed off-screen panels caused 32px page overflow)
+  - Impact counter numbers shrink on small screens; footer brand row stacks on mobile; /supporters header compact on mobile (icon-only back link <480px)
+
 ## Verification status
 - PASS: public content API, login/me/logout, forms POST, admin submissions, content create (UI e2e), volunteer form e2e, screenshots of all sections
 - BLOCKED (external): Claude chat returns 429 `CONCURRENCY_REQUEST_LIMIT` from the Emergent key proxy ("Unlock parallel requests by upgrading to Standard or Pro plan"). Code verified correct per playbook; will work once plan/balance allows. User: Profile → Manage plan → Universal Key → Add Balance / upgrade.

@@ -148,8 +148,8 @@ export const GetInvolved = () => {
       </div>
       <div className="mt-14 grid grid-cols-1 lg:grid-cols-2">
         <motion.div
-          initial={{ opacity: 0, x: -32 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="border-t-2 border-ink bg-brand-red p-6 text-paper md:p-12 lg:border-r-2"
@@ -163,8 +163,8 @@ export const GetInvolved = () => {
           </div>
         </motion.div>
         <motion.div
-          initial={{ opacity: 0, x: 32 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="border-t-2 border-ink p-6 md:p-12"

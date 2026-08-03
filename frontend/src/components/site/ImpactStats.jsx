@@ -54,7 +54,7 @@ export const ImpactStats = () => {
             data-testid={`impact-stat-${i}`}
             className="border-2 border-ink p-6 transition-colors duration-300 hover:bg-ink hover:text-paper md:p-8"
           >
-            <p className={`font-display text-5xl font-semibold leading-none tracking-tighter md:text-7xl ${i % 2 === 1 ? "text-brand-red" : ""}`}>
+            <p className={`font-display text-4xl font-semibold leading-none tracking-tighter min-[420px]:text-5xl md:text-7xl ${i % 2 === 1 ? "text-brand-red" : ""}`}>
               <Counter to={item.num} suffix={item.suffix} />
             </p>
             <p className="mt-4 text-[10px] font-bold uppercase tracking-[0.25em] opacity-70 md:text-xs">{item.label}</p>

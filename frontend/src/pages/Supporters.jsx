@@ -36,10 +36,10 @@ export default function Supporters() {
     <div data-testid="supporters-page" className="relative min-h-screen bg-paper text-ink">
       <div className="noise-overlay" aria-hidden="true" />
       <header className="flex items-center justify-between border-b-2 border-ink bg-paper/90 px-6 py-4 backdrop-blur-md md:px-12">
-        <Link to="/" data-testid="supporters-brand" className="flex items-center gap-2 font-display text-lg font-semibold uppercase tracking-tight">
+        <Link to="/" data-testid="supporters-brand" className="flex items-center gap-2 font-display text-base font-semibold uppercase tracking-tight min-[480px]:text-lg">
           <img src="/logo.svg" alt="Buland Awaaz logo" className="h-8 w-8 border-2 border-ink" />
           Buland <span className="text-brand-red">Awaaz</span>
-          <span className="border-2 border-ink bg-brand-yellow px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink">
+          <span className="hidden border-2 border-ink bg-brand-yellow px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink min-[480px]:inline-flex">
             Demo
           </span>
         </Link>
@@ -63,9 +63,9 @@ export default function Supporters() {
           <Link
             to="/"
             data-testid="supporters-back-link"
-            className="inline-flex items-center gap-2 border-2 border-ink px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] transition-colors duration-300 hover:bg-ink hover:text-paper"
+            className="inline-flex items-center gap-2 border-2 border-ink px-3 py-2 text-xs font-bold uppercase tracking-[0.25em] transition-colors duration-300 hover:bg-ink hover:text-paper min-[480px]:px-4"
           >
-            <ArrowLeft className="h-4 w-4" /> {s.back}
+            <ArrowLeft className="h-4 w-4" /> <span className="hidden min-[480px]:inline">{s.back}</span>
           </Link>
         </div>
       </header>
