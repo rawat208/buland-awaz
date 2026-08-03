@@ -72,6 +72,9 @@ NOTE: Site copy uses only these publicly documented work areas. Exact address, p
 ## Implemented (2026-08-03, round 9)
 - Social share card: brand-styled OG image (1200x630, logo + outlined BULAND/red AWAAZ + tagline + Demo chip) built via /public/og.html → captured to /public/og-image.png; Open Graph + Twitter Card meta tags added to index.html (absolute preview URLs) — WhatsApp/Twitter link shares now show the card
 
+## Implemented (2026-08-03, round 10)
+- Chatbot defaults to Hinglish: greeting, suggestions, placeholder now Roman-Hindi even in EN site mode; Claude system prompt instructs simple Hinglish by default, mirroring visitor's script (English→English, Devanagari→Devanagari). Verified live: Hinglish question got natural Hinglish streamed reply
+
 ## Verification status
 - PASS: public content API, login/me/logout, forms POST, admin submissions, content create (UI e2e), volunteer form e2e, screenshots of all sections
 - BLOCKED (external): Claude chat returns 429 `CONCURRENCY_REQUEST_LIMIT` from the Emergent key proxy ("Unlock parallel requests by upgrading to Standard or Pro plan"). Code verified correct per playbook; will work once plan/balance allows. User: Profile → Manage plan → Universal Key → Add Balance / upgrade.

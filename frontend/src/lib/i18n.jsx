@@ -108,11 +108,11 @@ export const STR = {
     },
     chat: {
       title: "Ask Buland",
-      headerSub: "AI assistant · answers about the NGO",
-      greeting: "Namaste! I'm Buland Mitra, the AI voice of Buland Awaaz. Ask me about our work, campaigns or volunteering.",
-      placeholder: "Ask about our work…",
-      error: "I'm having trouble connecting right now. Please try again in a moment, or use the contact form below.",
-      suggestions: ["What does Buland Awaaz do?", "How can I volunteer?", "Where do you work?"],
+      headerSub: "AI assistant · Hindi ya English — dono chalega",
+      greeting: "Namaste! Main Buland Mitra hoon — Buland Awaaz ki AI awaaz. Hamare kaam, campaigns ya volunteering ke baare me kuch bhi poochhiye. Hindi ya English, jaise aapko aasan lage!",
+      placeholder: "Kuch bhi poochhiye…",
+      error: "Abhi connect karne me dikkat ho rahi hai. Thodi der baad try kariye, ya neeche contact form bhar dijiye.",
+      suggestions: ["Buland Awaaz kya karti hai?", "Main volunteer kaise banu?", "Aap kahan kaam karte hain?"],
     },
     supporters: {
       label: "Supporters · Hamare log",
