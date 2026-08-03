@@ -4,8 +4,8 @@ import { Marquee } from "@/components/site/Marquee";
 import { Manifesto } from "@/components/site/Manifesto";
 import { Programs } from "@/components/site/Programs";
 import { News } from "@/components/site/News";
+import { JoinSection } from "@/components/site/JoinSection";
 import { GetInvolved } from "@/components/site/GetInvolved";
-import { ChatbotWidget } from "@/components/ChatbotWidget";
 
 export default function Home() {
   return (
@@ -18,10 +18,10 @@ export default function Home() {
         <Manifesto />
         <Programs />
         <News />
+        <JoinSection />
         <GetInvolved />
       </main>
       <Footer />
-      <ChatbotWidget />
     </div>
   );
 }

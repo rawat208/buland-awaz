@@ -1,11 +1,10 @@
-import { Link } from "react-router-dom";
-import { Megaphone } from "lucide-react";
 import { scrollToSection } from "@/lib/api";
 
 const NAV_LINKS = [
   { label: "Manifesto", id: "manifesto" },
   { label: "Programs", id: "programs" },
   { label: "News", id: "news" },
+  { label: "Join", id: "join" },
 ];
 
 export const Navbar = () => (
@@ -18,9 +17,7 @@ export const Navbar = () => (
       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       className="flex items-center gap-2 font-display text-lg font-semibold uppercase tracking-tight"
     >
-      <span className="flex h-8 w-8 items-center justify-center bg-brand-red text-paper">
-        <Megaphone className="h-4 w-4" />
-      </span>
+      <img src="/logo.svg" alt="Buland Awaaz logo" className="h-8 w-8 border-2 border-ink" />
       Buland <span className="text-brand-red">Awaaz</span>
     </button>
     <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
@@ -54,9 +51,12 @@ export const Navbar = () => (
 
 export const Footer = () => (
   <footer data-testid="site-footer" className="bg-ink px-6 py-16 text-paper md:px-12 md:py-24">
-    <p className="font-display text-[13vw] font-semibold uppercase leading-[0.85] tracking-tighter text-outline-paper md:text-[8vw]">
-      Buland Awaaz
-    </p>
+    <div className="flex items-center gap-4">
+      <img src="/logo.svg" alt="Buland Awaaz logo" className="h-14 w-14 border-2 border-paper/40 md:h-20 md:w-20" />
+      <p className="font-display text-[13vw] font-semibold uppercase leading-[0.85] tracking-tighter text-outline-paper md:text-[8vw]">
+        Buland Awaaz
+      </p>
+    </div>
     <div className="mt-12 grid grid-cols-1 gap-10 border-t-2 border-paper/25 pt-10 md:grid-cols-12">
       <div className="md:col-span-5">
         <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-yellow">Reach us</p>
@@ -89,14 +89,14 @@ export const Footer = () => (
         </div>
       </div>
       <div className="md:col-span-3">
-        <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-yellow">Team</p>
-        <Link
-          data-testid="footer-admin-link"
-          to="/admin/login"
+        <p className="text-xs font-bold uppercase tracking-[0.3em] text-brand-yellow">Join us</p>
+        <button
+          data-testid="footer-join-cta"
+          onClick={() => scrollToSection("join")}
           className="mt-4 inline-block border-2 border-paper/40 px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] transition-colors duration-300 hover:border-brand-red hover:bg-brand-red"
         >
-          Team login
-        </Link>
+          Member baniye
+        </button>
       </div>
     </div>
     <p className="mt-14 text-[10px] uppercase tracking-[0.3em] text-paper/40">

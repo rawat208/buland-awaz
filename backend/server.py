@@ -201,11 +201,29 @@ async def submit_volunteer(payload: VolunteerIn):
     return {"status": "ok"}
 
 
+class JoinIn(BaseModel):
+    name: str
+    phone: str
+    email: EmailStr
+    city: str
+    help_with: str = "General"
+    reason: Optional[str] = ""
+
+
+@api_router.post("/forms/join")
+async def submit_join(payload: JoinIn):
+    doc = payload.model_dump()
+    doc.update({"id": str(uuid.uuid4()), "created_at": now_iso()})
+    await db.joins.insert_one({**doc})
+    return {"status": "ok"}
+
+
 @api_router.get("/admin/submissions")
 async def admin_submissions(user=Depends(get_current_user)):
     volunteers = await db.volunteers.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
     contacts = await db.contacts.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
-    return {"volunteers": volunteers, "contacts": contacts}
+    joins = await db.joins.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
+    return {"volunteers": volunteers, "contacts": contacts, "joins": joins}
 
 
 # ---------------- AI Chatbot (Claude) ----------------

@@ -36,6 +36,14 @@ NOTE: Site copy uses only these publicly documented work areas. Exact address, p
 - Auth: seeded admin, JWT cookies, lockout protection
 - data-testids on all interactive elements
 
+## Implemented (2026-08-03, demo-mode conversion)
+- DEMO MODE: chatbot widget and admin routes/login removed from the UI (backend endpoints kept intact for easy re-enable)
+- New "Join Buland Awaaz" membership section (id="join"): name, phone, email, city, help preference, reason → POST /api/forms/join → `joins` collection (also returned in /api/admin/submissions)
+- Brand logo: /frontend/public/logo.svg (red megaphone mark, self-designed — NO verified official logo exists online; swap file to replace). Used in navbar, footer, favicon
+- Page title/meta updated for Buland Awaaz
+- Nav + footer updated: Join link, "Member baniye" CTA, team-login link removed
+- GitHub: user pushes via Emergent "Save to GitHub" (public repo requested)
+
 ## Verification status
 - PASS: public content API, login/me/logout, forms POST, admin submissions, content create (UI e2e), volunteer form e2e, screenshots of all sections
 - BLOCKED (external): Claude chat returns 429 `CONCURRENCY_REQUEST_LIMIT` from the Emergent key proxy ("Unlock parallel requests by upgrading to Standard or Pro plan"). Code verified correct per playbook; will work once plan/balance allows. User: Profile → Manage plan → Universal Key → Add Balance / upgrade.
