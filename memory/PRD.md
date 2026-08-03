@@ -44,6 +44,15 @@ NOTE: Site copy uses only these publicly documented work areas. Exact address, p
 - Nav + footer updated: Join link, "Member baniye" CTA, team-login link removed
 - GitHub: user pushes via Emergent "Save to GitHub" (public repo requested)
 
+## Implemented (2026-08-03, round 3)
+- CHATBOT RE-ENABLED: Buland Mitra widget back on home page; verified live with real Claude streaming answers (Universal Key limit resolved)
+- Awaaz Wall: new public /supporters page listing join members (name, city, help area, join date) via GET /api/members/public; 6 sample members seeded (sample: true flag); nav + footer links added; CTA on wall navigates home and auto-scrolls to #join
+- Logo: re-searched, still no verified official Buland Awaaz NGO logo online — designed mark (logo.svg) stays; swap that one file when official logo is provided
+
+## Implemented (2026-08-03, round 4)
+- DEMO clarification from user: this is a demo/showcase site only, real site comes later — all content stays sample
+- Yellow "DEMO" badge added next to brand in navbar (home) and /supporters header; footer note "Demo site — sab content sample hai"
+
 ## Verification status
 - PASS: public content API, login/me/logout, forms POST, admin submissions, content create (UI e2e), volunteer form e2e, screenshots of all sections
 - BLOCKED (external): Claude chat returns 429 `CONCURRENCY_REQUEST_LIMIT` from the Emergent key proxy ("Unlock parallel requests by upgrading to Standard or Pro plan"). Code verified correct per playbook; will work once plan/balance allows. User: Profile → Manage plan → Universal Key → Add Balance / upgrade.

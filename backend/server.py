@@ -218,6 +218,13 @@ async def submit_join(payload: JoinIn):
     return {"status": "ok"}
 
 
+@api_router.get("/members/public")
+async def public_members():
+    return await db.joins.find(
+        {}, {"_id": 0, "name": 1, "city": 1, "help_with": 1, "created_at": 1}
+    ).sort("created_at", -1).to_list(500)
+
+
 @api_router.get("/admin/submissions")
 async def admin_submissions(user=Depends(get_current_user)):
     volunteers = await db.volunteers.find({}, {"_id": 0}).sort("created_at", -1).to_list(500)
@@ -372,6 +379,32 @@ async def startup():
     if await db.content.count_documents({}) == 0:
         await db.content.insert_many([{**item} for item in SEED_CONTENT])
         logger.info("Seeded %d content items", len(SEED_CONTENT))
+    if await db.joins.count_documents({}) < 6:
+        samples = [
+            {
+                "id": str(uuid.uuid4()),
+                "name": name,
+                "city": city,
+                "help_with": help_with,
+                "email": f"sample{i}@demo.bulandawaaz.org",
+                "phone": "-",
+                "reason": "",
+                "sample": True,
+                "created_at": now_iso(),
+            }
+            for i, (name, city, help_with) in enumerate(
+                [
+                    ("Aarav Sharma", "Gurugram", "Campaigns & Marches"),
+                    ("Priya Yadav", "Nuh", "Teaching & Tuition Support"),
+                    ("Rahul Verma", "Gurugram", "Door-to-Door Surveys"),
+                    ("Sneha Rathi", "Faridabad", "Social Media & Content"),
+                    ("Mohd. Imran", "Gurugram", "Event Days"),
+                    ("Kavita Devi", "Rewari", "Jo bhi zaroorat ho"),
+                ]
+            )
+        ]
+        await db.joins.insert_many(samples)
+        logger.info("Seeded %d sample members", len(samples))
 
 
 @app.on_event("shutdown")

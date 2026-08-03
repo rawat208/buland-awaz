@@ -3,6 +3,7 @@ import "@/App.css";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Lenis from "lenis";
 import Home from "@/pages/Home";
+import Supporters from "@/pages/Supporters";
 import { Toaster } from "@/components/ui/sonner";
 
 function useLenis() {
@@ -38,6 +39,7 @@ function AppShell() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/supporters" element={<Supporters />} />
       </Routes>
       <Toaster position="top-center" richColors />
     </>

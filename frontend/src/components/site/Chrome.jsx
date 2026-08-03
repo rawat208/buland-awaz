@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { scrollToSection } from "@/lib/api";
 
 const NAV_LINKS = [
@@ -19,6 +20,9 @@ export const Navbar = () => (
     >
       <img src="/logo.svg" alt="Buland Awaaz logo" className="h-8 w-8 border-2 border-ink" />
       Buland <span className="text-brand-red">Awaaz</span>
+      <span data-testid="demo-badge" className="border-2 border-ink bg-brand-yellow px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink">
+        Demo
+      </span>
     </button>
     <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
       {NAV_LINKS.map((link) => (
@@ -31,6 +35,13 @@ export const Navbar = () => (
           {link.label}
         </button>
       ))}
+      <Link
+        data-testid="nav-link-wall"
+        to="/supporters"
+        className="text-xs font-bold uppercase tracking-[0.25em] transition-colors duration-200 hover:text-brand-red"
+      >
+        Awaaz Wall
+      </Link>
       <button
         data-testid="nav-volunteer-cta"
         onClick={() => scrollToSection("volunteer")}
@@ -86,6 +97,13 @@ export const Footer = () => (
           >
             Volunteer
           </button>
+          <Link
+            data-testid="footer-link-wall"
+            to="/supporters"
+            className="w-fit text-left text-sm uppercase tracking-[0.2em] text-paper/70 transition-colors duration-200 hover:text-brand-red"
+          >
+            Awaaz Wall
+          </Link>
         </div>
       </div>
       <div className="md:col-span-3">
@@ -100,7 +118,7 @@ export const Footer = () => (
       </div>
     </div>
     <p className="mt-14 text-[10px] uppercase tracking-[0.3em] text-paper/40">
-      © {new Date().getFullYear()} Buland Awaaz · Made loud in Gurugram
+      © {new Date().getFullYear()} Buland Awaaz · Made loud in Gurugram · Demo site — sab content sample hai
     </p>
   </footer>
 );
