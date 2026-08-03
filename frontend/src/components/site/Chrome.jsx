@@ -5,16 +5,25 @@ import { STR, useLang } from "@/lib/i18n";
 const NAV_IDS = ["manifesto", "programs", "news", "join"];
 
 const LangToggle = ({ className = "" }) => {
-  const { lang, toggle } = useLang();
+  const { lang, setLang } = useLang();
+  const base = "px-3 py-1.5 text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-200";
   return (
-    <button
-      data-testid="lang-toggle"
-      onClick={toggle}
-      aria-label="Switch language"
-      className={`border-2 border-ink px-3 py-2 text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-300 hover:bg-brand-yellow ${className}`}
-    >
-      {lang === "en" ? "हिंदी" : "EN"}
-    </button>
+    <div data-testid="lang-toggle" className={`flex border-2 border-ink ${className}`} role="group" aria-label="Language">
+      <button
+        data-testid="lang-en"
+        onClick={() => setLang("en")}
+        className={`${base} ${lang === "en" ? "bg-ink text-paper" : "bg-transparent text-ink hover:bg-brand-yellow"}`}
+      >
+        EN
+      </button>
+      <button
+        data-testid="lang-hi"
+        onClick={() => setLang("hi")}
+        className={`${base} border-l-2 border-ink ${lang === "hi" ? "bg-ink text-paper" : "bg-transparent text-ink hover:bg-brand-yellow"}`}
+      >
+        हिंदी
+      </button>
+    </div>
   );
 };
 

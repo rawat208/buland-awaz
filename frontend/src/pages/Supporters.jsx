@@ -21,7 +21,7 @@ const formatDate = (iso) => {
 
 export default function Supporters() {
   const navigate = useNavigate();
-  const { lang, toggle } = useLang();
+  const { lang, setLang } = useLang();
   const s = STR[lang].supporters;
   const [members, setMembers] = useState(null);
 
@@ -44,14 +44,22 @@ export default function Supporters() {
           </span>
         </Link>
         <div className="flex items-center gap-2">
-          <button
-            data-testid="lang-toggle"
-            onClick={toggle}
-            aria-label="Switch language"
-            className="border-2 border-ink px-3 py-2 text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-300 hover:bg-brand-yellow"
-          >
-            {lang === "en" ? "हिंदी" : "EN"}
-          </button>
+          <div data-testid="lang-toggle" className="flex border-2 border-ink" role="group" aria-label="Language">
+            <button
+              data-testid="lang-en"
+              onClick={() => setLang("en")}
+              className={`px-3 py-1.5 text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-200 ${lang === "en" ? "bg-ink text-paper" : "bg-transparent text-ink hover:bg-brand-yellow"}`}
+            >
+              EN
+            </button>
+            <button
+              data-testid="lang-hi"
+              onClick={() => setLang("hi")}
+              className={`border-l-2 border-ink px-3 py-1.5 text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-200 ${lang === "hi" ? "bg-ink text-paper" : "bg-transparent text-ink hover:bg-brand-yellow"}`}
+            >
+              हिंदी
+            </button>
+          </div>
           <Link
             to="/"
             data-testid="supporters-back-link"

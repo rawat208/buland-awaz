@@ -273,7 +273,7 @@ export const LangProvider = ({ children }) => {
 
   const toggle = () => setLang((p) => (p === "en" ? "hi" : "en"));
 
-  return <LangContext.Provider value={{ lang, toggle }}>{children}</LangContext.Provider>;
+  return <LangContext.Provider value={{ lang, toggle, setLang }}>{children}</LangContext.Provider>;
 };
 
 export const useLang = () => useContext(LangContext);
