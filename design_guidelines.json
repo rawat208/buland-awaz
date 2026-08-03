@@ -1,0 +1,128 @@
+{
+  "typography": {
+    "heading_font": "Clash Display",
+    "body_font": "Manrope",
+    "pairing_strategy": "Radical weight contrast. Loud uppercase headings in Clash Display mixed with extremely clean Manrope for body text.",
+    "scale": {
+      "h1": "text-5xl md:text-7xl lg:text-[7vw] leading-[0.9] tracking-tighter uppercase",
+      "h2": "text-4xl md:text-6xl leading-[1] tracking-tight uppercase",
+      "h3": "text-2xl md:text-4xl leading-none tracking-tight",
+      "body": "text-base md:text-lg leading-relaxed",
+      "labels": "text-xs md:text-sm tracking-[0.2em] uppercase font-bold"
+    }
+  },
+  "colors": {
+    "primary": {
+      "name": "Paper White",
+      "hex": "#F4F2EC",
+      "usage": "Main background, mimicking documentary paper."
+    },
+    "secondary": {
+      "name": "Charcoal Black",
+      "hex": "#111111",
+      "usage": "Primary text, dark mode sections, stark borders."
+    },
+    "accent_1": {
+      "name": "Urgent Red",
+      "hex": "#E33A25",
+      "usage": "CTAs, hover states, highlight text, warning."
+    },
+    "accent_2": {
+      "name": "Protest Yellow",
+      "hex": "#FFC107",
+      "usage": "Marquee backgrounds, secondary highlights."
+    }
+  },
+  "visual_enhancers": [
+    "Noise/Grain texture overlay across the entire site (pointer-events-none, opacity 5%).",
+    "1px stark black borders around sections and grid items (Brutalist touch).",
+    "High-contrast, inverse-color hover states for buttons.",
+    "Clipped frames: Product photography should have sharp square or slightly imperfect borders. Never soft rounded corners.",
+    "Editorial numbers (01, 02, 03) in massive typography for manifesto chapters."
+  ],
+  "motion": {
+    "libraries_required": ["framer-motion", "@studio-freight/lenis"],
+    "scroll": "Lenis momentum scrolling is mandatory for premium feel.",
+    "hero_reveal": "Kinetic masked line-by-line reveal. Text lines start translated down out of a hidden overflow container, and animate up into view sequentially.",
+    "marquee": "One slow, continuous editorial marquee using framer-motion or react-fast-marquee, showing key campaigns.",
+    "parallax": "Subtle parallax on hero images and large typography on scroll."
+  },
+  "components": [
+    {
+      "name": "Kinetic Hero",
+      "path": "frontend/src/components/KineticHero.jsx",
+      "instructions": "Use framer-motion to orchestrate a line-by-line staggered reveal of the loud headline. Overlay a documentary-style image with slight parallax on scroll."
+    },
+    {
+      "name": "Manifesto Chapters",
+      "path": "frontend/src/components/Manifesto.jsx",
+      "instructions": "Asymmetrical layout. Large numerals (e.g., '01') paired with raw, unapologetic text. Use framer-motion's whileInView to fade and slide up."
+    },
+    {
+      "name": "Programs Grid",
+      "path": "frontend/src/components/ProgramsGrid.jsx",
+      "instructions": "Bento grid (Tetris style). Wide gaps, varying spans. Include clipped documentary images."
+    },
+    {
+      "name": "AI Chatbot Widget",
+      "path": "frontend/src/components/ChatbotWidget.jsx",
+      "instructions": "A floating action button that opens a chat panel. Uses shadcn's sheet or popover. Styled to look like a raw, stark command interface."
+    },
+    {
+      "name": "Admin Dashboard",
+      "path": "frontend/src/components/admin/Dashboard.jsx",
+      "instructions": "Use shadcn/ui components extensively. Keep it clean, high-density grid, functional (Swiss archetype). Sharp edges, no soft shadows."
+    }
+  ],
+  "layouts": {
+    "public_site": "Asymmetrical, large typography, generous padding (py-24, py-32), stark dividers between sections.",
+    "admin_dashboard": "Sidebar navigation, top header, dense grid layout for stats and tables."
+  },
+  "image_urls": [
+    {
+      "url": "https://images.unsplash.com/photo-1618245472177-2a74ad3b994a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzV8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBnaXJsJTIwcG9ydHJhaXQlMjBkb2N1bWVudGFyeXxlbnwwfHx8fDE3ODU3Mzc4NDF8MA&ixlib=rb-4.1.0&q=85",
+      "category": "Hero Background",
+      "description": "Authentic portrait of an Indian girl in red and yellow shirt, documentary style."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1738854710710-4d3714df5186?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwzfHxwcm90ZXN0JTIwYWN0aXZpc20lMjBpbmRpYXxlbnwwfHx8fDE3ODU3Mzc4MzF8MA&ixlib=rb-4.1.0&q=85",
+      "category": "Manifesto / Voice",
+      "description": "Activist woman holding a drawing for justice, represents loud voice and women empowerment."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1524069290683-0457abfe42c3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBjaGlsZHJlbiUyMGVkdWNhdGlvbnxlbnwwfHx8fDE3ODU3Mzc4MzF8MA&ixlib=rb-4.1.0&q=85",
+      "category": "Programs: Child Rights / Education",
+      "description": "Group of Indian children smiling and waving, perfect for education program highlights."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1609252509229-364936a1d1a2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBydXJhbCUyMHdvbWVufGVufDB8fHx8MTc4NTczNzgzMXww&ixlib=rb-4.1.0&q=85",
+      "category": "Programs: Community Outreach",
+      "description": "Rural Indian women sitting in a circle during a community meeting."
+    }
+  ],
+  "accessibility": {
+    "contrast": "Ensure all text meets APCA standards. White text on Urgent Red, Black text on Off-White.",
+    "reduced_motion": "Wrap complex framer-motion animations with useReducedMotion hooks to disable them if preferred by the user.",
+    "aria_labels": "All forms, inputs, and interactive widgets (including the AI chatbot) must have proper aria-labels and roles."
+  },
+  "instructions_to_main_agent": [
+    "Install 'framer-motion', '@studio-freight/lenis', 'react-fast-marquee', 'lucide-react', and 'sonner'.",
+    "Use 'Clash Display' and 'Manrope' via Google Fonts or standard imports. If Clash Display is unavailable, use 'Cabinet Grotesk' or 'Anton'.",
+    "Build the public site without Shadcn layout wrappers (pure Tailwind). Use Shadcn ONLY for interactive logic (Forms, Modals, Chatbot UI).",
+    "Ensure all interactive elements have data-testid attributes.",
+    "Implement Lenis smooth scrolling in a global App wrapper.",
+    "For the admin dashboard, strictly use Shadcn components to build a dense, highly functional layout.",
+    "Make the site loud, unapologetic, and editorial. Do NOT center text blocks globally. Rely on stark left alignments and asymmetrical spacing.",
+    "Create dummy API routes in FastAPI to handle contact form and volunteer registration submissions, storing them in MongoDB.",
+    "Implement the Chatbot UI seamlessly, matching the dark/stark aesthetic of the brand, integrating with the mock FastAPI endpoint."
+  ],
+  "UNIVERSAL_GUIDELINES_FOR_MAIN_AGENT": [
+    "You MUST NOT apply universal transitions (e.g., transition: all). Add specific transitions for interactive elements.",
+    "You MUST NOT center align the app container. No '.App { text-align: center; }'.",
+    "Create depth through layered design elements with z-index hierarchy, but keep borders sharp for this brutalist/editorial theme.",
+    "Every interaction needs micro-animations - hover states, selection states.",
+    "Use 2-3x more spacing than feels comfortable. Cramped designs look cheap.",
+    "Include data-testid attributes for all key interactive elements.",
+    "Use Sonner for all toast notifications."
+  ]
+}
