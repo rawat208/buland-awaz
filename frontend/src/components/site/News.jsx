@@ -72,9 +72,11 @@ export const News = () => {
               <p className="mt-3 text-xs font-bold uppercase tracking-[0.2em] opacity-60">{formatDate(item.date)}</p>
             </div>
             <h3 className="font-display text-2xl font-semibold uppercase leading-none tracking-tight transition-colors duration-300 group-hover:text-brand-red md:col-span-5 md:text-4xl">
-              {item.title}
+              {(lang === "hi" && item.title_hi) || item.title}
             </h3>
-            <p className="text-sm leading-relaxed opacity-70 md:col-span-4 md:text-base">{item.summary}</p>
+            <p className="text-sm leading-relaxed opacity-70 md:col-span-4 md:text-base">
+              {(lang === "hi" && item.summary_hi) || item.summary}
+            </p>
           </motion.article>
         ))}
       </div>

@@ -65,6 +65,10 @@ NOTE: Site copy uses only these publicly documented work areas. Exact address, p
 ## Implemented (2026-08-03, round 7)
 - New professional logo designed (user chose design over upload): hand-crafted SVG — red square badge, paper megaphone with sound-wave arcs ("loud voice" symbolism), crisp at every size. Replaced /frontend/public/logo.svg → instantly live in navbar, footer, /supporters header, and favicon (all reference the same file)
 
+## Implemented (2026-08-03, round 8)
+- Mobile hamburger menu: md:hidden menu button in navbar opens animated dropdown with all links (Manifesto, Programs, News, Join, Awaaz Wall, Volunteer CTA); closes on selection; mobile header = brand + lang pill + hamburger
+- Hindi news content: content model + DB now carry title_hi/summary_hi (all 4 existing items migrated; SEED_CONTENT updated for fresh DBs); News section shows Hindi title/summary + Hindi type badges when toggle is हिंदी, English fallback otherwise
+
 ## Verification status
 - PASS: public content API, login/me/logout, forms POST, admin submissions, content create (UI e2e), volunteer form e2e, screenshots of all sections
 - BLOCKED (external): Claude chat returns 429 `CONCURRENCY_REQUEST_LIMIT` from the Emergent key proxy ("Unlock parallel requests by upgrading to Standard or Pro plan"). Code verified correct per playbook; will work once plan/balance allows. User: Profile → Manage plan → Universal Key → Add Balance / upgrade.

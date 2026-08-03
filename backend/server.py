@@ -129,6 +129,8 @@ class ContentIn(BaseModel):
     summary: str = ""
     body: str = ""
     image_url: Optional[str] = ""
+    title_hi: Optional[str] = ""
+    summary_hi: Optional[str] = ""
     published: bool = True
 
 
@@ -317,9 +319,11 @@ SEED_CONTENT = [
     {
         "id": str(uuid.uuid4()),
         "title": "Good Morning Gurugram: cleanliness & health awareness drive",
+        "title_hi": "गुड मॉर्निंग गुरुग्राम: सफाई व स्वास्थ्य जागरूकता अभियान",
         "type": "news",
         "date": "2026-06-28",
         "summary": "Buland Awaaz joined residents and students for the Good Morning Gurugram campaign — carrying the message of clean surroundings and healthy habits across the city.",
+        "summary_hi": "बुलंद आवाज़ गुड मॉर्निंग गुरुग्राम अभियान में निवासियों और छात्रों के साथ जुड़ी — शहर भर में साफ-सफाई और स्वस्थ आदतों का संदेश फैलाया।",
         "body": "",
         "image_url": "https://images.unsplash.com/photo-1738854710710-4d3714df5186?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMjh8MHwxfHNlYXJjaHwzfHxwcm90ZXN0JTIwYWN0aXZpc20lMjBpbmRpYXxlbnwwfHx8fDE3ODU3Mzc4MzF8MA&ixlib=rb-4.1.0&q=85",
         "published": True,
@@ -328,9 +332,11 @@ SEED_CONTENT = [
     {
         "id": str(uuid.uuid4()),
         "title": "Awareness march against child marriage",
+        "title_hi": "बाल विवाह के खिलाफ जागरूकता मार्च",
         "type": "news",
         "date": "2026-06-15",
         "summary": "Volunteers and community members marched to spread awareness on the harms of child marriage and the right of every girl to education and choice.",
+        "summary_hi": "स्वयंसेवकों और समुदाय के लोगों ने बाल विवाह के नुकसान और हर लड़की के शिक्षा व चुनाव के अधिकार पर जागरूकता फैलाने के लिए मार्च निकाला।",
         "body": "",
         "image_url": "https://images.unsplash.com/photo-1609252509229-364936a1d1a2?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzN8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBydXJhbCUyMHdvbWVufGVufDB8fHx8MTc4NTczNzgzMXww&ixlib=rb-4.1.0&q=85",
         "published": True,
@@ -339,9 +345,11 @@ SEED_CONTENT = [
     {
         "id": str(uuid.uuid4()),
         "title": "School enrollment camp: door-to-door survey drive",
+        "title_hi": "स्कूल दाखिला शिविर: घर-घर सर्वे अभियान",
         "type": "event",
         "date": "2026-08-02",
         "summary": "Join our volunteers as we go door to door, identify out-of-school children, counsel families and help with school admissions. Gurugram. Volunteers welcome.",
+        "summary_hi": "हमारे स्वयंसेवकों के साथ घर-घर जाइए, स्कूल से छूटे बच्चों को पहचानिए, परिवारों को समझाइए और दाखिले में मदद कीजिए। गुरुग्राम। स्वयंसेवकों का स्वागत है।",
         "body": "",
         "image_url": "https://images.unsplash.com/photo-1524069290683-0457abfe42c3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDQ2NDN8MHwxfHNlYXJjaHwxfHxpbmRpYW4lMjBjaGlsZHJlbiUyMGVkdWNhdGlvbnxlbnwwfHx8fDE3ODU3Mzc4MzF8MA&ixlib=rb-4.1.0&q=85",
         "published": True,

@@ -1,4 +1,7 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
+import { Menu, X } from "lucide-react";
 import { scrollToSection } from "@/lib/api";
 import { STR, useLang } from "@/lib/i18n";
 
@@ -30,59 +33,116 @@ const LangToggle = ({ className = "" }) => {
 export const Navbar = () => {
   const { lang } = useLang();
   const s = STR[lang].nav;
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const go = (id) => {
+    setMenuOpen(false);
+    scrollToSection(id);
+  };
+
   return (
     <header
       data-testid="site-navbar"
-      className="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b-2 border-ink bg-paper/90 px-6 py-4 backdrop-blur-md md:px-12"
+      className="fixed inset-x-0 top-0 z-50 border-b-2 border-ink bg-paper/90 backdrop-blur-md"
     >
-      <button
-        data-testid="nav-brand"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="flex items-center gap-2 font-display text-lg font-semibold uppercase tracking-tight"
-      >
-        <img src="/logo.svg" alt="Buland Awaaz logo" className="h-8 w-8 border-2 border-ink" />
-        Buland <span className="text-brand-red">Awaaz</span>
-        <span data-testid="demo-badge" className="border-2 border-ink bg-brand-yellow px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink">
-          Demo
-        </span>
-      </button>
-      <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
-        {NAV_IDS.map((id) => (
-          <button
-            key={id}
-            data-testid={`nav-link-${id}`}
-            onClick={() => scrollToSection(id)}
+      <div className="flex items-center justify-between px-6 py-4 md:px-12">
+        <button
+          data-testid="nav-brand"
+          onClick={() => {
+            setMenuOpen(false);
+            window.scrollTo({ top: 0, behavior: "smooth" });
+          }}
+          className="flex items-center gap-2 font-display text-lg font-semibold uppercase tracking-tight"
+        >
+          <img src="/logo.svg" alt="Buland Awaaz logo" className="h-8 w-8 border-2 border-ink" />
+          Buland <span className="text-brand-red">Awaaz</span>
+          <span data-testid="demo-badge" className="border-2 border-ink bg-brand-yellow px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-ink">
+            Demo
+          </span>
+        </button>
+        <nav className="hidden items-center gap-8 md:flex" aria-label="Primary">
+          {NAV_IDS.map((id) => (
+            <button
+              key={id}
+              data-testid={`nav-link-${id}`}
+              onClick={() => scrollToSection(id)}
+              className="text-xs font-bold uppercase tracking-[0.25em] transition-colors duration-200 hover:text-brand-red"
+            >
+              {s[id]}
+            </button>
+          ))}
+          <Link
+            data-testid="nav-link-wall"
+            to="/supporters"
             className="text-xs font-bold uppercase tracking-[0.25em] transition-colors duration-200 hover:text-brand-red"
           >
-            {s[id]}
+            {s.wall}
+          </Link>
+          <LangToggle />
+          <button
+            data-testid="nav-volunteer-cta"
+            onClick={() => scrollToSection("volunteer")}
+            className="border-2 border-ink bg-ink px-5 py-2.5 text-xs font-bold uppercase tracking-[0.25em] text-paper transition-colors duration-300 hover:bg-brand-red hover:border-brand-red"
+          >
+            {s.volunteer}
           </button>
-        ))}
-        <Link
-          data-testid="nav-link-wall"
-          to="/supporters"
-          className="text-xs font-bold uppercase tracking-[0.25em] transition-colors duration-200 hover:text-brand-red"
-        >
-          {s.wall}
-        </Link>
-        <LangToggle />
-        <button
-          data-testid="nav-volunteer-cta"
-          onClick={() => scrollToSection("volunteer")}
-          className="border-2 border-ink bg-ink px-5 py-2.5 text-xs font-bold uppercase tracking-[0.25em] text-paper transition-colors duration-300 hover:bg-brand-red hover:border-brand-red"
-        >
-          {s.volunteer}
-        </button>
-      </nav>
-      <div className="flex items-center gap-2 md:hidden">
-        <LangToggle />
-        <button
-          data-testid="nav-volunteer-cta-mobile"
-          onClick={() => scrollToSection("volunteer")}
-          className="border-2 border-ink bg-ink px-4 py-2 text-xs font-bold uppercase tracking-[0.25em] text-paper"
-        >
-          {s.volunteer}
-        </button>
+        </nav>
+        <div className="flex items-center gap-2 md:hidden">
+          <LangToggle />
+          <button
+            data-testid="mobile-menu-button"
+            onClick={() => setMenuOpen((v) => !v)}
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={menuOpen}
+            className="border-2 border-ink p-2 transition-colors duration-200 hover:bg-brand-yellow"
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.nav
+            key="mobile-menu"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            data-testid="mobile-menu"
+            aria-label="Mobile"
+            className="overflow-hidden border-t-2 border-ink bg-paper md:hidden"
+          >
+            <div className="flex flex-col px-6 py-2">
+              {NAV_IDS.map((id) => (
+                <button
+                  key={id}
+                  data-testid={`mobile-link-${id}`}
+                  onClick={() => go(id)}
+                  className="border-b border-ink/15 py-4 text-left font-display text-xl font-semibold uppercase tracking-tight transition-colors duration-200 hover:text-brand-red"
+                >
+                  {s[id]}
+                </button>
+              ))}
+              <Link
+                data-testid="mobile-link-wall"
+                to="/supporters"
+                onClick={() => setMenuOpen(false)}
+                className="border-b border-ink/15 py-4 font-display text-xl font-semibold uppercase tracking-tight transition-colors duration-200 hover:text-brand-red"
+              >
+                {s.wall}
+              </Link>
+              <button
+                data-testid="mobile-link-volunteer"
+                onClick={() => go("volunteer")}
+                className="my-4 border-2 border-ink bg-ink py-3.5 text-center text-sm font-bold uppercase tracking-[0.25em] text-paper transition-colors duration-300 hover:bg-brand-red hover:border-brand-red"
+              >
+                {s.volunteer}
+              </button>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
