@@ -1,58 +1,6 @@
-import { useEffect } from "react";
 import "@/App.css";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import Lenis from "lenis";
 import Home from "@/pages/Home";
-import Supporters from "@/pages/Supporters";
-import { Toaster } from "@/components/ui/sonner";
-import { LangProvider } from "@/lib/i18n";
 
-function useLenis() {
-  useEffect(() => {
-    const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
-    window.__lenis = lenis;
-    let raf;
-    const loop = (time) => {
-      lenis.raf(time);
-      raf = requestAnimationFrame(loop);
-    };
-    raf = requestAnimationFrame(loop);
-    return () => {
-      cancelAnimationFrame(raf);
-      lenis.destroy();
-      window.__lenis = null;
-    };
-  }, []);
+export default function App() {
+  return <Home />;
 }
-
-function ScrollToTop() {
-  const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
-  return null;
-}
-
-function AppShell() {
-  useLenis();
-  return (
-    <LangProvider>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/supporters" element={<Supporters />} />
-      </Routes>
-      <Toaster position="top-center" richColors />
-    </LangProvider>
-  );
-}
-
-function App() {
-  return (
-    <BrowserRouter>
-      <AppShell />
-    </BrowserRouter>
-  );
-}
-
-export default App;
